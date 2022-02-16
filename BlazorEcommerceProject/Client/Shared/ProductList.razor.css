@@ -13,6 +13,19 @@
         transform: scale(1.1);
     }
 
+/*From Bootstrap 4*/
+
+.media{
+    display: flex;
+    align-items: flex-start;
+}
+
+.media-body{
+    flex:1;
+}
+
+/* Bootstrap 5 */
+
 .media-img-wrapper
 {
     width:200px;
@@ -21,4 +34,15 @@
 
 .price{
     color: green;
+}
+
+@media (max-width:1023.98px)
+{
+    .media{
+        flex-direction: column;
+    }
+    media-img-wrapper{
+        width:100%;
+        height:auto;
+    }
 }
