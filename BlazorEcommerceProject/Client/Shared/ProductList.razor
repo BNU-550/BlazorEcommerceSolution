@@ -1,4 +1,6 @@
-﻿<ul class="list-unstyled">
+﻿@inject HttpClient Http
+
+<ul class="list-unstyled">
 	@foreach(var product in Products)
 	{
 		<li class="media my-3">
@@ -23,3 +25,13 @@
 	}
 </ul>
 
+@code{
+	
+	public static List<Product> Products = new List<Product>();
+	
+	protected override async Task OnInitializedAsync()
+	{
+		var results = await Http.GetFromJsonAsync<List<Product>>("api/Products"); 
+		if(results != null) Products = results;
+	}
+}
