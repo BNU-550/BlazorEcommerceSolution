@@ -9,7 +9,7 @@
             _context = context;
         }
 
-        public async Task<ServiceResponse<List<Product>>> GetProductsAsync()
+        public async Task<ServiceResponse<List<Product>>> GetProducts()
         {
             var response = new ServiceResponse<List<Product>>()
             {
