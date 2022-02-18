@@ -1,7 +1,7 @@
 global using BlazorEcommerceProject.Shared;
 global using Microsoft.EntityFrameworkCore;
 global using BlazorEcommerceProject.Server.Data;
-using Microsoft.AspNetCore.ResponseCompression;
+global using BlazorEcommerceProject.Server.Services.ProductService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +17,8 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IProductService, ProductService>();
 
 //builder.Services.Configure<KestrelServerOptions>(options =>
 //{
