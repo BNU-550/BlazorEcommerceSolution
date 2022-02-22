@@ -18,5 +18,25 @@
 
             return response;
         }
+
+        public async Task<ServiceResponse<Product>> GetProduct(int Id)
+        {
+            var response = new ServiceResponse<Product>();
+            //var product = await _context.Products.SingleOrDefaultAsync(x => x.Id == Id);
+            var product = await _context.Products.FindAsync(Id);
+
+            if(product == null)
+            {
+                response.IsSuccess = false;
+                response.Message = $"No product found with id = {Id}";
+            }
+            else
+            {
+                response.IsSuccess = true;
+                response.Data = product;
+            }
+
+            return response;
+        }
     }
 }

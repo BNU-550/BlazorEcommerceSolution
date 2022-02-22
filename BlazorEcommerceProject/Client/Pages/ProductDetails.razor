@@ -1,24 +1,20 @@
 ﻿@page "/product/{id:int}"
 @inject IProductService ProductService
 
-@if(Product == null)
+@if(product == null)
 {
-	<span>Loading Product Details...</span>
+	<span>@message</span>
 }
 else
 {
 	<div class="media my-3">
 		<div class="media-img-wrapper mr-2">
-			<a href="#">
-				<img class="media-img" src="@product.ImageURL" 
-					alt="@product.Title" />
-			</a>
+			<img class="media-img" src="@product.ImageURL" 
+				alt="@product.Title" />
 		</div>
 		<br/>
 		<div class="media-body">
-			<a href="#">
-				<h4 class="mb-0">@product.Title</h4>
-			</a>
+			<h4 class="mb-0">@product.Title</h4>
 			<br/>
 			<p>@product.Description</p>
 			<h5 class="price">
@@ -26,18 +22,29 @@ else
 			</h5>
 		</div>
 	</div>
-
 }
 
 @code 
 {
-	private Nullable<Product>  product = null;
+	private Product  product = null;
+
+	private string message = "Loading a product...";
 
 	[Parameter]
 	public int Id { get; set; }
 
 	protected override async Task OnParametersSetAsync()
 	{
-		product = ProductService.Products.Find(p => p.Id == Id);
+		var result = await ProductService.GetProductById(Id);
+
+		if(!result.IsSuccess)
+		{
+			message = result.Message;
+		}
+		else
+		{
+			product = result.Data;
+		}
+
 	}
 }

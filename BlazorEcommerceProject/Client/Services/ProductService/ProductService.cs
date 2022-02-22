@@ -16,5 +16,12 @@
             var result = await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/products");
             Products = result.Data;
         }
+
+        public async Task<ServiceResponse<Product>> GetProductById(int productId)
+        {
+			var result = 
+                await _http.GetFromJsonAsync<ServiceResponse<Product>>($"api/product/{productId}");
+            return result;
+        }
     }
 }

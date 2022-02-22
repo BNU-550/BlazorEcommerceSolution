@@ -8,7 +8,7 @@ namespace BlazorEcommerceProject.Server.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
-        
+
         public ProductsController(IProductService productService)
         {
             _productService = productService;
@@ -16,10 +16,18 @@ namespace BlazorEcommerceProject.Server.Controllers
 
         [HttpGet]
         public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProducts()
-		{
+        {
             var products = await _productService.GetProducts();
 
             return Ok(products);
-		}
+        }
+
+        [HttpGet, Route("{Id}")]
+        public async Task<ActionResult<ServiceResponse<Product>>> GetProduct(int Id)
+        {
+            var product = await _productService.GetProduct(Id);
+
+            return Ok(product);
+        }
     }
 }
