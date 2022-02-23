@@ -21,6 +21,7 @@
         {
 			var result = 
                 await _http.GetFromJsonAsync<ServiceResponse<Product>>($"api/products/{productId}");
+            
             return result;
         }
     }
