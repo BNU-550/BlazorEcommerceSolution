@@ -11,10 +11,18 @@
             _http = http;
         }
 
-        public async Task GetProducts()
+        public event Action ProductsChanged;
+
+        public async Task GetProducts(string? categoryUrl)
         {
-            var result = await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/products");
-            Products = result.Data;
+            var result = categoryUrl == null ?
+                await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/products") :
+                await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>($"api/products/category/{categoryUrl}");
+
+            if(result != null && result.Data != null)
+                Products = result.Data;
+            
+            ProductsChanged.Invoke();
         }
 
         public async Task<ServiceResponse<Product>> GetProductById(int productId)
