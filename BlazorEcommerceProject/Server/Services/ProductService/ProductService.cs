@@ -39,12 +39,12 @@
             return response;
         }
 
-        public async Task<ServiceResponse<List<Product>>> GetProductsByCategory(string categoryURL)
+        public async Task<ServiceResponse<List<Product>>> GetProductsByCategory(string categoryUrl)
         {
             var response = new ServiceResponse<List<Product>>
             {
                 Data = await _context.Products
-                    .Where(p => p.Category.URL.ToLower().Equals(categoryURL.ToLower()))
+                    .Where(p => p.Category.URL.ToLower().Equals(categoryUrl.ToLower()))
                     .ToListAsync()
             };
 
