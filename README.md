@@ -8,4 +8,6 @@
 This course is based on creating an ecommerce website selling books, films and
 video games.  Each product Category has its own web page.
 
+This is a WebAssembly App using ASP.NET Core 6.0 and includes 
+
 
