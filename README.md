@@ -5,6 +5,7 @@
 
 [Udemy Course Example Source Code](https://github.com/patrickgod/BlazorEcommerce)
 
-This course is based on creating an ecommerce webside selling books, films and
-video games
+This course is based on creating an ecommerce website selling books, films and
+video games.  Each product Category has its own web page.
+
 
